@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRX - 數據驅動，智領未來決策</title>
+    <title>FRX</title>
     <meta name="google-site-verification" content="_sWdj7ESWt5qdZN88RbvI-C_anFGJ_hhLBlgU2jjAEA" />
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg">   
     <script src="https://cdn.tailwindcss.com"></script>
@@ -39,6 +39,7 @@
                         'pulse-glow': 'pulseGlow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'float': 'float 6s ease-in-out infinite',
                         'marquee': 'marquee 25s linear infinite',
+                        'menu-pop': 'menuPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                     },
                     keyframes: {
                         pulseGlow: {
@@ -52,6 +53,10 @@
                         marquee: {
                             '0%': { transform: 'translateX(0%)' },
                             '100%': { transform: 'translateX(-50%)' },
+                        },
+                        menuPop: {
+                            '0%': { opacity: 0, transform: 'scale(0.95) translateY(-10px)' },
+                            '100%': { opacity: 1, transform: 'scale(1) translateY(0)' },
                         }
                     }
                 }
@@ -67,10 +72,6 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
 
         .glass-nav {
@@ -108,20 +109,16 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .text-gradient-gold {
-            background: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .page-content {
             display: none;
             opacity: 0;
-            transition: opacity 0.45s ease-in-out;
+            transform: translateY(15px);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .page-content.active {
             display: block;
             opacity: 1;
+            transform: translateY(0);
         }
 
         #cursor-glow {
@@ -135,18 +132,6 @@
             z-index: 9999;
             transition: transform 0.1s ease-out;
         }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .os-window {
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.2);
-        }
     </style>
 </head>
 <body class="selection:bg-frx-cyan selection:text-black flex flex-col min-h-screen">
@@ -156,7 +141,7 @@
     <header class="sticky top-0 left-0 w-full z-40 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-14 text-xs font-normal">
-                <a href="javascript:void(0)" onclick="switchPage('home')" class="flex items-center space-x-3 text-white hover:opacity-80 transition group">
+                <a href="javascript:void(0)" onclick="switchPage('home', true)" class="flex items-center space-x-3 text-white hover:opacity-80 transition group">
                     <img src="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg" alt="FRX Logo" class="h-7 w-7 rounded-lg object-cover border border-white/20 shadow-md group-hover:border-frx-cyan transition" onerror="this.src='https://placehold.co/100x100/111/fff?text=FRX'">
                     <div class="flex flex-col">
                         <span class="font-extrabold text-sm tracking-tight text-white group-hover:text-frx-cyan transition">FRX</span>
@@ -164,22 +149,22 @@
                     </div>
                 </a>
 
-                <nav class="hidden lg:flex space-x-5 text-neutral-300 font-medium text-xs">
-                    <button onclick="switchPage('home')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-home">首頁 Overview</button>
-                    <button onclick="switchPage('visionpro')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-visionpro">最新動態</button>
-                    <button onclick="switchPage('os')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-os">Discord</button>
-                    <button onclick="switchPage('silicon')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-silicon">歷程</button>
-                    <button onclick="switchPage('developers')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-developers">介紹</button>
-                    <button onclick="switchPage('esg')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-esg">常見問題</button>
-                    <button onclick="switchPage('matrix')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-matrix">技術</button>
-                    <button onclick="switchPage('stores')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-stores">FR 100</button>
+                <nav class="hidden lg:flex space-x-6 text-neutral-300 font-medium text-xs">
+                    <button onclick="switchPage('home', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-home">首頁 Overview</button>
+                    <button onclick="switchPage('visionpro', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-visionpro">最新動態</button>
+                    <button onclick="switchPage('os', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-os">Discord</button>
+                    <button onclick="switchPage('silicon', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-silicon">歷程</button>
+                    <button onclick="switchPage('developers', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-developers">介紹</button>
+                    <button onclick="switchPage('esg', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-esg">常見問題</button>
+                    <button onclick="switchPage('matrix', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-matrix">技術</button>
+                    <button onclick="switchPage('stores', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-stores">FR 100</button>
                 </nav>
 
                 <div class="flex items-center space-x-3 text-neutral-300">
                     <button onclick="toggleSearchModal()" class="hover:text-white transition p-2 rounded-full hover:bg-white/10">
                         <i data-lucide="search" class="w-4 h-4"></i>
                     </button>
-                    <button onclick="switchPage('contact')" class="bg-white text-black hover:bg-neutral-200 text-xs font-extrabold px-4 py-2 rounded-full transition shadow-lg hidden sm:block">
+                    <button onclick="switchPage('contact', true)" class="bg-white text-black hover:bg-neutral-200 text-xs font-extrabold px-4 py-2 rounded-full transition shadow-lg hidden sm:block">
                         社群平台
                     </button>
                     <button onclick="toggleMobileMenu()" class="lg:hidden text-neutral-300 hover:text-white p-1">
@@ -190,19 +175,19 @@
         </div>
     </header>
 
-    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/98 backdrop-blur-3xl hidden flex-col justify-center px-8 text-lg font-semibold space-y-4 text-neutral-300 overflow-y-auto py-12">
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/98 backdrop-blur-3xl hidden flex-col justify-center px-8 text-lg font-semibold space-y-4 text-neutral-300 overflow-y-auto py-12 animate-menu-pop">
         <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-neutral-400 hover:text-white">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <div class="text-xs font-mono text-frx-cyan uppercase mb-2">FRX 目錄導覽</div>
-        <button onclick="switchPage('home'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">01. 首頁 Overview</button>
-        <button onclick="switchPage('visionpro'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">02. FRX 最新動態</button>
-        <button onclick="switchPage('os'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">03. Discord 社群</button>
-        <button onclick="switchPage('silicon'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">04. 發展歷程</button>
-        <button onclick="switchPage('developers'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">05. 核心介紹</button>
-        <button onclick="switchPage('esg'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">06. 常見問題</button>
-        <button onclick="switchPage('matrix'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">07. 核心技術</button>
-        <button onclick="switchPage('stores'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">08. FR 100 點擊戰</button>
+        <div class="text-xs font-mono text-frx-cyan uppercase mb-2">FRX 目錄</div>
+        <button onclick="switchPage('home', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">01. 首頁 Overview</button>
+        <button onclick="switchPage('visionpro', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">02. FRX 最新動態</button>
+        <button onclick="switchPage('os', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">03. Discord</button>
+        <button onclick="switchPage('silicon', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">04. 歷程</button>
+        <button onclick="switchPage('developers', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">05. 介紹</button>
+        <button onclick="switchPage('esg', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">06. 常見問題</button>
+        <button onclick="switchPage('matrix', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">07. 技術</button>
+        <button onclick="switchPage('stores', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">08. FR 100</button>
     </div>
 
     <main class="flex-grow">
@@ -219,7 +204,7 @@
                 <div class="relative z-10 max-w-6xl mx-auto my-auto">
                     <div class="inline-flex items-center space-x-2.5 bg-white/5 border border-white/15 backdrop-blur-xl rounded-full px-5 py-1.5 mb-8 text-xs text-neutral-300">
                         <span class="w-2.5 h-2.5 rounded-full bg-frx-cyan animate-ping"></span>
-                        <span class="font-mono tracking-widest uppercase">F R X - Next Gen Ecosystem</span>
+                        <span class="font-mono tracking-widest uppercase">F R X</span>
                     </div>
 
                     <h1 class="text-6xl sm:text-8xl lg:text-[110px] font-black tracking-tight text-gradient-white mb-8 leading-none">
@@ -227,27 +212,27 @@
                     </h1>
 
                     <div class="my-8 max-w-4xl mx-auto px-4">
-                        <a href="javascript:void(0)" onclick="switchPage('visionpro')" class="block group relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl transition duration-500 hover:border-frx-cyan">
+                        <a href="javascript:void(0)" onclick="switchPage('visionpro', true)" class="block group relative rounded-3xl overflow-hidden border border-white/25 shadow-2xl transition duration-500 hover:border-frx-cyan">
                             <img src="https://i.ibb.co/xK0Ph9DW/Background-Eraser.jpg" alt="FRX Banner" class="w-full h-48 sm:h-64 object-cover transform group-hover:scale-105 transition duration-700">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end justify-between p-6">
                                 <div class="text-left">
-                                    <span class="text-xs font-mono text-frx-cyan block uppercase">Latest News & Updates</span>
-                                    <span class="text-lg font-bold text-white group-hover:text-frx-cyan transition">了解最新 FRX 產品動態與藍圖 →</span>
+                                    <span class="text-xs font-mono text-frx-cyan block uppercase">最新動態 Latest News</span>
+                                    <span class="text-lg font-bold text-white group-hover:text-frx-cyan transition">了解最新 FRX 產品動態與未來藍圖 →</span>
                                 </div>
                             </div>
                         </a>
                     </div>
 
                     <p class="text-lg sm:text-2xl text-neutral-400 max-w-3xl mx-auto mb-10 font-normal leading-relaxed">
-                        未來的科技藍圖，就在 FRX。我們結合大數據、獨立作業系統與尖端硬體，引領數位時代革新。
+                        未來的科技，就在 FRX。我們打破傳統框架，注入無限可能。
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-                        <button onclick="switchPage('visionpro')" class="w-full sm:w-auto px-10 py-4 bg-white text-black hover:bg-neutral-200 font-extrabold rounded-full transition transform hover:scale-105 duration-300 shadow-2xl flex items-center justify-center space-x-3 text-sm">
+                        <button onclick="switchPage('visionpro', true)" class="w-full sm:w-auto px-10 py-4 bg-white text-black hover:bg-neutral-200 font-extrabold rounded-full transition transform hover:scale-105 duration-300 shadow-2xl flex items-center justify-center space-x-3 text-sm">
                             <span>探索最新動態</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
-                        <button onclick="switchPage('os')" class="w-full sm:w-auto px-10 py-4 bg-neutral-900/90 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 font-semibold rounded-full transition flex items-center justify-center space-x-3 backdrop-blur-md text-sm">
+                        <button onclick="switchPage('os', true)" class="w-full sm:w-auto px-10 py-4 bg-neutral-900/90 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 font-semibold rounded-full transition flex items-center justify-center space-x-3 backdrop-blur-md text-sm">
                             <i data-lucide="play-circle" class="w-4 h-4 text-frx-cyan"></i>
                             <span>進入 Discord 社群</span>
                         </button>
@@ -257,13 +242,13 @@
                 <div class="relative z-10 w-full max-w-7xl mt-12">
                     <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">
                         <div class="text-left space-y-1">
-                            <div class="text-xs font-mono text-frx-cyan uppercase tracking-widest">2030 VISION BLUEPRINT</div>
+                            <div class="text-xs font-mono text-frx-cyan uppercase tracking-widest">2030 核心願景</div>
                             <div class="text-xl font-bold text-white">整合次世代自動化技術，打造更靈活、更強大的數位生態。</div>
-                            <div class="text-xs text-neutral-400">用智慧科技與精準數據，重塑產業秩序。</div>
+                            <div class="text-xs text-neutral-400">用智慧科技，重塑產業秩序與互動體驗。</div>
                         </div>
                         <div class="flex items-center space-x-8 text-center font-mono">
                             <div>
-                                <div class="text-2xl font-bold text-white">100T+</div>
+                                <div class="text-2xl font-bold text-white">100 Trillion</div>
                                 <div class="text-[10px] text-neutral-500">伺服器每秒運算次數</div>
                             </div>
                             <div class="h-8 w-px bg-white/10"></div>
@@ -278,44 +263,44 @@
 
             <section class="py-28 px-4 sm:px-8 max-w-7xl mx-auto">
                 <div class="mb-16">
-                    <span class="text-xs font-mono text-frx-cyan tracking-widest uppercase mb-2 block">[ CORE INNOVATION ]</span>
+                    <span class="text-xs font-mono text-frx-cyan tracking-widest uppercase mb-2 block">FRX INNOVATION</span>
                     <h2 class="text-4xl sm:text-7xl font-extrabold text-white">科技與美學的極致突破。</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="md:col-span-2 glass-card glass-card-hover rounded-3xl p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden group">
                         <div class="relative z-10">
-                            <span class="text-xs font-mono text-frx-cyan">未來產品預告 / 旗艦發表</span>
+                            <span class="text-xs font-mono text-frx-cyan">未來產品預告</span>
                             <div class="text-6xl sm:text-9xl font-extrabold text-white my-4 font-mono tracking-tighter">OS Beta</div>
                             <h3 class="text-2xl sm:text-4xl font-bold text-white mb-3">全新世代作業系統來臨</h3>
                             <p class="text-neutral-400 max-w-xl text-sm sm:text-base leading-relaxed">
-                                2030 年 1 月 1 日，FRX 將舉辦全球線上發表會，首次揭露打破常規的跨平台獨立作業系統[span_6](start_span)[span_6](end_span)。
+                                2030 年 1 月 1 日全球線上發表會，見證革命性跨平台架構。
                             </p>
                         </div>
                         <div class="mt-8 relative h-64 rounded-2xl overflow-hidden border border-white/10">
-                            <img src="https://i.ibb.co/VsJs018/IMG-1122.jpg" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=2000&q=80', 'FRX Quantum Chip Micro Topology')">
+                            <img src="https://i.ibb.co/VsJs018/IMG-1122.jpg" class="w-full h-full object-cover opacity-75 group-hover:scale-105 transition duration-700" alt="Chip Topology">
                         </div>
                     </div>
 
                     <div class="glass-card glass-card-hover rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden border border-white/10">
                         <div>
-                            <span class="text-xs font-mono text-frx-cyan">FRX ECOSYSTEM</span>
-                            <div class="text-5xl sm:text-7xl font-extrabold text-gradient-cyan my-4 font-mono">獨立</div>
+                            <span class="text-xs font-mono text-frx-cyan">FRX 核心架構</span>
+                            <div class="text-5xl sm:text-7xl font-extrabold text-gradient-cyan my-4 font-mono">未來</div>
                             <h3 class="text-2xl font-bold text-white mb-2">獨立作業系統正式版</h3>
-                            <p class="text-neutral-400 text-sm leading-relaxed">預計將於 2030 至 2033 年間全面商用化並首次亮相[span_7](start_span)[span_7](end_span)。</p>
+                            <p class="text-neutral-400 text-sm leading-relaxed">預計將於 2030 至 2033 年間全面普及，打造零延遲生態系。</p>
                         </div>
                         <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-neutral-400">
                             <span>預計上市年份</span>
-                            <span class="text-white">2030 - 2033</span>
+                            <span class="text-white">2030-2033</span>
                         </div>
                     </div>
 
                     <div class="glass-card glass-card-hover rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden border border-white/10">
                         <div>
-                            <span class="text-xs font-mono text-frx-cyan">HARDWARE ROADMAP</span>
+                            <span class="text-xs font-mono text-frx-cyan">硬體藍圖</span>
                             <div class="text-5xl sm:text-7xl font-extrabold text-white my-4 font-mono">2035</div>
                             <h3 class="text-2xl font-bold text-white mb-2">全新超科技行動裝置</h3>
-                            <p class="text-neutral-400 text-sm leading-relaxed">預計於 2035 年在全球線上發表會中震撼登場[span_8](start_span)[span_8](end_span)。</p>
+                            <p class="text-neutral-400 text-sm leading-relaxed">預計於 2035 年全球同步線上發表，突破物理極限。</p>
                         </div>
                         <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-neutral-400">
                             <span>預計上市年份</span>
@@ -326,28 +311,28 @@
                     <div class="md:col-span-2 glass-card glass-card-hover rounded-3xl p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden group">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                             <div>
-                                <span class="text-xs font-mono text-frx-cyan">INTERACTION REVOLUTION</span>
-                                <h3 class="text-3xl font-bold text-white">將重新定義全螢幕手勢與空間互動</h3>
+                                <span class="text-xs font-mono text-frx-cyan">全新系統互動</span>
+                                <h3 class="text-3xl font-bold text-white">重新定義全螢幕手勢與空間感知</h3>
                             </div>
                             <span class="px-3.5 py-1.5 bg-frx-cyan/20 text-frx-cyan border border-frx-cyan/40 rounded-full font-mono text-xs">
-                                2035 - 2036
+                                2035-2036 願景
                             </span>
                         </div>
                         <p class="text-neutral-400 text-sm sm:text-base mb-8 max-w-2xl leading-relaxed">
-                            預計搭載全新自研系統於最新行動裝置中，結合神經網絡與高精密感測器，帶來前所未有的流暢操作手感[span_9](start_span)[span_9](end_span)。
+                            結合環境感知神經網絡，預計搭載全新自研系統於未來行動裝置，帶來前所未有的直覺互動体验！
                         </p>
                         <div class="grid grid-cols-3 gap-6 border-t border-white/10 pt-6 text-center">
                             <div>
-                                <div class="text-lg sm:text-2xl font-bold text-white font-mono">OS Beta版亮相</div>
-                                <div class="text-xs text-neutral-500">2030.1.1</div>
+                                <div class="text-xl sm:text-2xl font-bold text-white font-mono">OS Beta 亮相</div>
+                                <div class="text-xs text-neutral-500 mt-1">2030.01.01</div>
                             </div>
                             <div>
-                                <div class="text-lg sm:text-2xl font-bold text-white font-mono">OS正式版上市</div>
-                                <div class="text-xs text-neutral-500">2030 - 2033</div>
+                                <div class="text-xl sm:text-2xl font-bold text-white font-mono">正式版上市</div>
+                                <div class="text-xs text-neutral-500 mt-1">2030 - 2033</div>
                             </div>
                             <div>
-                                <div class="text-lg sm:text-2xl font-bold text-white font-mono">次世代行動裝置</div>
-                                <div class="text-xs text-neutral-500">2035</div>
+                                <div class="text-xl sm:text-2xl font-bold text-white font-mono">次世代裝置</div>
+                                <div class="text-xs text-neutral-500 mt-1">2035</div>
                             </div>
                         </div>
                     </div>
@@ -355,48 +340,75 @@
             </section>
         </div>
 
-        <!-- 最新動態 -->
+        <!-- 最新動態 (已改進：將向下滾動與下方卡片整合成紮實豐富的內容，不空虛) -->
         <div id="page-visionpro" class="page-content">
             <section class="max-w-7xl mx-auto px-4 sm:px-8 py-16">
                 <div class="text-center max-w-4xl mx-auto mb-16">
-                    <span class="text-xs font-mono text-frx-cyan tracking-widest uppercase mb-3 block">[ LATEST DYNAMICS ]</span>
+                    <span class="text-xs font-mono text-frx-cyan tracking-widest uppercase mb-3 block">[ 動態資訊與核心研發 ]</span>
                     <h1 class="text-5xl sm:text-8xl font-black text-white tracking-tight mb-6">FRX 最新動態</h1>
                     <p class="text-neutral-400 text-lg sm:text-2xl font-normal leading-relaxed">
-                        精緻構造與工藝，見證 FRX 的每一步成長。
+                        精緻構造與工藝，見證 FRX 的每一步突破。
                     </p>
                 </div>
 
-                <div class="relative h-[200vh] w-full rounded-3xl overflow-hidden border border-white/10 my-12" id="apple-zoom-container">
-                    <div class="sticky top-16 h-[80vh] w-full overflow-hidden flex items-center justify-center rounded-3xl bg-black">
-                        <div class="relative w-full h-full flex items-center justify-center">
-                            <img id="apple-zoom-img" src="https://i.ibb.co/rRH1WjBj/photo-output.jpg" alt="FRX Optical Architecture" class="w-full h-full object-cover transition-transform duration-100 ease-out scale-100">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none"></div>
-                            
-                            <div class="absolute bottom-12 text-center max-w-xl px-4 pointer-events-none">
-                                <span class="text-xs font-mono text-frx-cyan uppercase tracking-widest">[ 2030 旗艦展望 ]</span>
-                                <h3 class="text-3xl font-extrabold text-white mt-1">全新作業系統架構預覽</h3>
-                                <p class="text-sm text-neutral-300 mt-2">向下滾動網頁，探索更深層的技術細節</p>
+                <!-- 紮實整併的動態展示區 (不再單調空虛) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="lg:col-span-2 glass-card rounded-3xl p-8 sm:p-12 flex flex-col justify-between border border-white/10 relative overflow-hidden">
+                        <div class="relative z-10 space-y-4">
+                            <span class="px-3 py-1 bg-frx-cyan/20 text-frx-cyan border border-frx-cyan/40 rounded-full font-mono text-xs inline-block">焦點頭條</span>
+                            <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">2030 跨世代作業系統與光學架構發布預告</h2>
+                            <p class="text-neutral-300 text-base leading-relaxed">
+                                我們正緊鑼密鼓地推進 OS Beta 的核心開發。透過微距光學與航太級結構的融合，未來的數位生活將變得前所未有地真實且流暢。
+                            </p>
+                        </div>
+                        <div class="mt-8 rounded-2xl overflow-hidden border border-white/15 h-72">
+                            <img src="https://i.ibb.co/rRH1WjBj/photo-output.jpg" alt="FRX Optical Architecture" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-white/10 space-y-6">
+                        <div class="space-y-3">
+                            <span class="text-xs font-mono text-frx-cyan uppercase">研發進度追蹤</span>
+                            <h3 class="text-2xl font-bold text-white">模組化晶片與系統整合</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                為了確保在 2030 年順利亮相，研發團隊目前已完成超過 85% 的底層核心架構壓力測試。
+                            </p>
+                        </div>
+                        <div class="space-y-4 pt-4 border-t border-white/10 text-xs font-mono">
+                            <div class="flex justify-between text-neutral-300">
+                                <span>軟體架構穩定度</span>
+                                <span class="text-frx-cyan">99.4%</span>
+                            </div>
+                            <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-frx-cyan h-full w-[99.4%]"></div>
+                            </div>
+                            <div class="flex justify-between text-neutral-300 pt-2">
+                                <span>硬體相容性測試</span>
+                                <span class="text-emerald-400">92.8%</span>
+                            </div>
+                            <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-emerald-400 h-full w-[92.8%]"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-                    <div class="relative rounded-3xl overflow-hidden glass-card glass-card-hover group h-[480px] cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1600&q=80', 'FRX Vision Pro 鏡頭組微距視角')">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="relative rounded-3xl overflow-hidden glass-card glass-card-hover group h-[480px]">
                         <img src="https://i.ibb.co/MkMxLbRh/photo-output.jpg" alt="Lens Macro" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-8 flex flex-col justify-end">
-                            <span class="text-xs font-mono text-frx-cyan mb-1">2035 願景藍圖</span>
-                            <h3 class="text-3xl font-bold text-white mb-2">重新定義行動裝置的極限</h3>
-                            <p class="text-neutral-400 text-sm">（本圖片為虛擬概念示意圖，非真實量產照片）本產品目前處於研發階段，詳細規格請持續鎖定官方公告[span_10](start_span)[span_10](end_span)。</p>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-8 flex flex-col justify-end">
+                            <span class="text-xs font-mono text-frx-cyan mb-1">2035 概念藍圖</span>
+                            <h3 class="text-3xl font-bold text-white mb-2">重新定義行動裝置的邊界</h3>
+                            <p class="text-neutral-300 text-sm leading-relaxed">本圖片為虛擬概念示意圖，非產品真實外觀。詳細動態請持續鎖定官方公告。</p>
                         </div>
                     </div>
 
-                    <div class="relative rounded-3xl overflow-hidden glass-card glass-card-hover group h-[480px] cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1600&q=80', '航太級鈦合金邊框')">
+                    <div class="relative rounded-3xl overflow-hidden glass-card glass-card-hover group h-[480px]">
                         <img src="https://i.ibb.co/7JBYfwC4/photo-output.jpg" alt="Titanium Frame" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-8 flex flex-col justify-end">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-8 flex flex-col justify-end">
                             <span class="text-xs font-mono text-frx-cyan mb-1">OS Beta 發表</span>
                             <h3 class="text-3xl font-bold text-white mb-2">2030 年 1 月 1 日</h3>
-                            <p class="text-neutral-400 text-sm">以頂級工藝打造流暢體驗，極致，自此而始[span_11](start_span)[span_11](end_span)。</p>
+                            <p class="text-neutral-300 text-sm leading-relaxed">極致工藝的結晶，即將在線上發表會全面揭曉。</p>
                         </div>
                     </div>
                 </div>
@@ -407,27 +419,27 @@
         <div id="page-os" class="page-content">
             <section class="max-w-6xl mx-auto px-4 sm:px-8 py-20">
                 <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <span class="text-xs font-mono text-neutral-400 uppercase tracking-widest">[ FRX DISCORD COMMUNITY ]</span>
-                    <h1 class="text-4xl sm:text-6xl font-black text-white">FRX 官方社群平台</h1>
+                    <span class="text-xs font-mono text-neutral-400 uppercase tracking-widest">[ FRX Discord ]</span>
+                    <h1 class="text-4xl sm:text-6xl font-black text-white">FRX 社群中心</h1>
                     <p class="text-neutral-400 text-base">
-                        交流、分享、宣傳與掌握最新動態的聚集地。
+                        交流、分享、宣傳最新動態，與全球志同道合的開發者一同前行。
                     </p>
                 </div>
 
                 <div class="space-y-16">
-                    <div class="glass-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8">
+                    <div class="glass-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 border border-white/10">
                         <div class="h-64 sm:h-80 rounded-2xl overflow-hidden border border-white/10">
                             <img src="https://i.ibb.co/CpWY0wBn/photo-output.jpg" alt="OS Interface" class="w-full h-full object-cover">
                         </div>
-                        <div class="space-y-4">
-                            <span class="text-xs font-mono text-neutral-400">Discord Ecosystem</span>
-                            <h2 class="text-3xl font-bold text-white">完整的互動社群系統</h2>
-                            <p class="text-neutral-400 text-sm leading-relaxed">
-                                無論是技術交流、產品討論還是日常閒聊，這裡匯聚了各地的科技愛好者與創作者，想聊什麼都可以[span_12](start_span)[span_12](end_span)。
+                        <div class="space-y-6">
+                            <span class="text-xs font-mono text-frx-cyan">COMMUNITY SYSTEM</span>
+                            <h2 class="text-3xl font-bold text-white">完整的社群互動與交流系統</h2>
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                想說什麼都行！無論是技術討論、概念交流還是專案合作，我們隨時歡迎你的加入。
                             </p>
                             <div>
-                                <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex items-center space-x-2 text-xs font-bold text-frx-cyan hover:underline">
-                                    <span>立即加入 Discord 伺服器</span>
+                                <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 bg-white text-black hover:bg-neutral-200 font-bold rounded-full transition text-xs">
+                                    <span>立即前往 Discord</span>
                                     <span>&rarr;</span>
                                 </a>
                             </div>
@@ -441,40 +453,40 @@
         <div id="page-silicon" class="page-content">
             <section class="max-w-5xl mx-auto px-4 sm:px-8 py-20">
                 <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <span class="text-xs font-mono text-neutral-400 uppercase tracking-widest">[ FRX HISTORY & MILESTONES ]</span>
+                    <span class="text-xs font-mono text-neutral-400 uppercase tracking-widest">[ FRX HISTORY ]</span>
                     <h1 class="text-4xl sm:text-6xl font-black text-white">FRX 的發展歷程</h1>
                     <p class="text-neutral-400 text-base">
-                        从創立前身至今，我們一步步實踐對科技與美學的承諾。
+                        從創立至今，我們一步步實踐對科技與美學的承諾。
                     </p>
                 </div>
 
-                <div class="space-y-12">
-                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                        <div class="font-mono text-3xl font-bold text-white">2025</div>
+                <div class="space-y-8">
+                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center border border-white/10">
+                        <div class="font-mono text-3xl font-bold text-frx-cyan">2025</div>
                         <div class="md:col-span-2 space-y-2">
                             <h3 class="text-xl font-bold text-white">FR 品牌創立</h3>
-                            <p class="text-neutral-400 text-sm leading-relaxed">
-                                FRX 科技公司的前身，早期以網頁製作與介面設計為主，為後續的技術規模化奠定深厚基礎[span_13](start_span)[span_13](end_span)。
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                此公司為 FRX 科技公司前身，早期以網頁製作與設計為主軸，奠定扎實的數位工藝基礎。
                             </p>
                         </div>
                     </div>
 
-                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center border border-white/10">
                         <div class="font-mono text-3xl font-bold text-white">2026</div>
                         <div class="md:col-span-2 space-y-2">
                             <h3 class="text-xl font-bold text-white">FR 科技公司重要成就</h3>
-                            <p class="text-neutral-400 text-sm leading-relaxed">
-                                截至 2026 年 8 月 1 日，團隊已成功製作超過 200+ 個專業網站，以及數十個 .apk 與 .exe 應用軟體[span_14](start_span)[span_14](end_span)。
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                截至 2026 年 8 月 1 日，已累計製作超過 200+ 個網站以及數十個 .apk / .exe 軟體。
                             </p>
                         </div>
                     </div>
 
-                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                        <div class="font-mono text-3xl font-bold text-white">2026.9/1</div>
+                    <div class="glass-card rounded-3xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center border border-white/10">
+                        <div class="font-mono text-3xl font-bold text-emerald-400">2026.9/1</div>
                         <div class="md:col-span-2 space-y-2">
                             <h3 class="text-xl font-bold text-white">FRX 正式成立</h3>
-                            <p class="text-neutral-400 text-sm leading-relaxed">
-                                整合全方位資源，FRX 正式成立，以全新姿態迎向下一個世代的科技浪潮，一切就緒[span_15](start_span)[span_15](end_span)。
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                一切就緒，迎向下一個偉大的數位時代。
                             </p>
                         </div>
                     </div>
@@ -495,25 +507,25 @@
                     </p>
                 </div>
 
-                <div class="space-y-24 text-neutral-300">
-                    <div class="space-y-4 border-l-2 border-frx-cyan/50 pl-6 sm:pl-8">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">無縫的空間感知</h3>
-                        <p class="text-base sm:text-lg leading-relaxed text-neutral-400">
-                            未來的裝置不再受限於單一螢幕尺寸。透過極高精度的環境感知與神經網絡運算，科技將無縫融入你的生活空間，在你需要時自然顯現，不需要時悄然隱匿[span_16](start_span)[span_16](end_span)。
+                <div class="space-y-16 text-neutral-300">
+                    <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">無縫的空間感知</h3>
+                        <p class="text-base leading-relaxed text-neutral-400">
+                            未來的裝置不再受限於螢幕尺寸。透過極高精度的環境感知與神經網絡運算，科技將融入你的生活空間，在你需要時自然顯現，在不需要時悄然隱匿。
                         </p>
                     </div>
 
-                    <div class="space-y-4 border-l-2 border-purple-500/50 pl-6 sm:pl-8">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">直覺的互動美學</h3>
-                        <p class="text-base sm:text-lg leading-relaxed text-neutral-400">
-                            最先進的科技，往往不需要額外學習。我們致力於將複雜的後端架構與演算法化繁為簡，讓每一次的眼神、手勢與觸碰，都如同呼吸般流暢直覺[span_17](start_span)[span_17](end_span)。
+                    <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">直覺的互動美學</h3>
+                        <p class="text-base leading-relaxed text-neutral-400">
+                            最先進的科技，往往不需要學習。我們致力於將複雜的後端架構與演算法化繁為簡，讓每一次的眼神、手勢與觸碰，都如同呼吸般流暢直覺。
                         </p>
                     </div>
 
-                    <div class="space-y-4 border-l-2 border-emerald-500/50 pl-6 sm:pl-8">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">永續與智慧的共生</h3>
-                        <p class="text-base sm:text-lg leading-relaxed text-neutral-400">
-                            真正的創新不只改變生活，更守護未來。FRX 堅持在追求極致效能的同時，兼顧環保與永續發展，讓先進科技與地球環境達到完美的動態平衡[span_18](start_span)[span_18](end_span)。
+                    <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">永續與智慧的共生</h3>
+                        <p class="text-base leading-relaxed text-neutral-400">
+                            真正的創新不只改變生活，更守護未來。FRX 堅持在追求極致效能的同時，兼顧環保與永續發展，讓先進科技與地球環境達到完美的動態平衡。
                         </p>
                     </div>
                 </div>
@@ -542,28 +554,28 @@
                     <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-3 transition hover:border-frx-cyan/40">
                         <h3 class="text-xl font-bold text-white tracking-tight">Q1: FRX OS 預計何時正式推出？</h3>
                         <p class="text-sm sm:text-base leading-relaxed text-neutral-400">
-                            FRX OS 測試版 (Beta) 預計於 2030 年 1 月 1 日全球線上發表並首次亮相。正式版則預計在 2030 至 2033 年間陸續推出，提供極致流暢的次世代作業系統體驗[span_19](start_span)[span_19](end_span)。
+                            FRX OS 測試版 (Beta) 預計於 2030 年 1 月 1 日全球線上發表並首次亮相。正式版則預計在 2030 至 2033 年間陸續推出，提供極致流暢的次世代作業系統體驗。
                         </p>
                     </div>
 
                     <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-3 transition hover:border-frx-cyan/40">
                         <h3 class="text-xl font-bold text-white tracking-tight">Q2: 如何參與 FRX 的最新產品發表與預購？</h3>
                         <p class="text-sm sm:text-base leading-relaxed text-neutral-400">
-                            您可隨時關注網站上的「最新動態」頁面。當產品進入公開預購階段時，我們會在官網開放專屬的企業與個人預約通道[span_20](start_span)[span_20](end_span)。
+                            您可隨時關注網站上的「最新動態」頁面。當產品進入公開預購階段時，我們會在官網開放專屬的預約通道。
                         </p>
                     </div>
 
                     <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-3 transition hover:border-frx-cyan/40">
                         <h3 class="text-xl font-bold text-white tracking-tight">Q3: 概念產品與硬體裝置何時會正式上市？</h3>
                         <p class="text-sm sm:text-base leading-relaxed text-neutral-400">
-                            根據目前的研發藍圖，全新超科技行動裝置預計於 2035 年全球首次亮相。所有產品上市時程與規格，請以官方最終公佈為準[span_21](start_span)[span_21](end_span)。
+                            根據目前的研發藍圖，全新超科技行動裝置預計於 2035 年全球首次亮相。所有產品上市時程與規格，請以官方最終公佈為準。
                         </p>
                     </div>
 
                     <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-3 transition hover:border-frx-cyan/40">
-                        <h3 class="text-xl font-bold text-white tracking-tight">Q4: 網站上標註的上市時間是確切的嗎？</h3>
+                        <h3 class="text-xl font-bold text-white tracking-tight">Q4: 是否在 2035 上市最新行動裝置？</h3>
                         <p class="text-sm sm:text-base leading-relaxed text-neutral-400">
-                            本網站部分未來時間點為概念預測，並非絕對確切的量產上市日期。詳細動態請隨時查閱「最新動態」頁面公告[span_22](start_span)[span_22](end_span)。
+                            本網站部分時間規劃為預測藍圖，並非絕對確切日期，詳情請持續查閱「最新動態」。
                         </p>
                     </div>
                 </div>
@@ -588,25 +600,25 @@
                     </p>
                 </div>
 
-                <div class="space-y-24 text-neutral-300">
-                    <div class="space-y-4 border-l-2 border-frx-cyan/50 pl-6 sm:pl-8">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">FRX 專用高效處理器</h3>
-                        <p class="text-base sm:text-lg leading-relaxed text-neutral-400">
-                            採用極致精密的微架構設計，帶來前所未有的強悍算力與極低功耗。它能在瞬間完成複雜的空間定位與運算，讓所有操作皆達到真正的零延遲[span_23](start_span)[span_23](end_span)。
+                <div class="space-y-16 text-neutral-300">
+                    <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">FRX 專屬處理器架構</h3>
+                        <p class="text-base leading-relaxed text-neutral-400">
+                            採用極致精密的架構設計，帶來前所未有的強悍算力與極低功耗。它能在瞬間完成複雜的空間定位，讓所有操作皆達到真正的零延遲。
                         </p>
                     </div>
 
-                    <div class="space-y-4 border-l-2 border-purple-500/50 pl-6 sm:pl-8">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">高擬真微距光學架構</h3>
-                        <p class="text-base sm:text-lg leading-relaxed text-neutral-400">
-                            透過雙眼超高解析度光學模組，呈現出前所未有的逼真畫質。每一個細節都清晰銳利，完美消弭虛擬與現實的界線[span_24](start_span)[span_24](end_span)。
+                    <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">高擬真微距光學架構</h3>
+                        <p class="text-base leading-relaxed text-neutral-400">
+                            透過雙眼超高解析度呈現出前所未有的逼真畫質。每一個細節都清晰銳利，完美消弭虛擬與現實的界線。
                         </p>
                     </div>
 
-                    <div class="space-y-4 border-l-2 border-emerald-500/50 pl-6 sm:pl-8">
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">無縫環境感測網絡</h3>
-                        <p class="text-base sm:text-lg leading-relaxed text-neutral-400">
-                            整合多重高精度感測器與手勢追蹤演算法，裝置能夠精確捕捉您的每一個動作與眼神意圖。無需繁瑣控制器，直覺的自然手勢即是最好的互動介面[span_25](start_span)[span_25](end_span)。
+                    <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">無縫環境感測網絡</h3>
+                        <p class="text-base leading-relaxed text-neutral-400">
+                            整合多重高精度感測器與手勢追蹤演算法，裝置能夠精確捕捉您的每一個動作與眼神意圖，無需繁瑣控制器。
                         </p>
                     </div>
                 </div>
@@ -627,7 +639,7 @@
                     align-items: center;
                     justify-content: center;
                     width: 100%;
-                    min-height: 60vh;
+                    min-height: 50vh;
                     position: relative;
                     user-select: none;
                     cursor: pointer;
@@ -681,7 +693,7 @@
                     position: fixed;
                     font-size: 1.8rem;
                     font-weight: 800;
-                    color: #ffd700;
+                    color: #00f0ff;
                     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
                     pointer-events: none;
                     z-index: 9999;
@@ -689,14 +701,8 @@
                 }
 
                 @keyframes floatUp {
-                    0% {
-                        opacity: 1;
-                        transform: translateY(0) scale(1);
-                    }
-                    100% {
-                        opacity: 0;
-                        transform: translateY(-80px) scale(1.3);
-                    }
+                    0% { opacity: 1; transform: translateY(0) scale(1); }
+                    100% { opacity: 0; transform: translateY(-80px) scale(1.3); }
                 }
             </style>
 
@@ -705,7 +711,7 @@
                     <span class="text-xs font-mono text-frx-cyan tracking-widest uppercase mb-3 block">[ GLOBAL LIVE BATTLE ]</span>
                     <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight mb-4">全球即時點擊戰</h1>
                     <p class="text-neutral-400 text-lg">
-                        與全球玩家同步連線，點擊畫面任意處累積世界總次數[span_26](start_span)[span_26](end_span)。
+                        與全球玩家同步連線，點擊畫面累積世界總次數。
                     </p>
                 </div>
 
@@ -775,7 +781,7 @@
             </script>
         </div>
 
-        <!-- 社群平台 (Contact) -->
+        <!-- 社群平台 / 聯絡 -->
         <div id="page-contact" class="page-content">
             <section class="max-w-5xl mx-auto px-4 sm:px-8 py-24 sm:py-32">
                 <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
@@ -794,11 +800,11 @@
                             <span class="text-xs font-mono text-frx-cyan uppercase tracking-wider block">PUBLIC COMMUNITY</span>
                             <h3 class="text-2xl font-bold text-white tracking-tight">FRX 公開交流社群</h3>
                             <p class="text-sm text-neutral-400 leading-relaxed">
-                                專屬於所有科技愛好者與創作者的開放空間。在這裡分享你的想法、參與討論，並第一手掌握最新動態[span_27](start_span)[span_27](end_span)。
+                                專屬於所有科技愛好者與創作者的開放空間。在這裡分享你的想法、參與討論，並第一手掌握最新動態。
                             </p>
                         </div>
                         <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex justify-center items-center py-3.5 px-6 bg-frx-cyan hover:bg-cyan-300 text-black font-extrabold rounded-full transition text-sm">
-                            加入公開 Discord 伺服器
+                            加入公開 Discord
                         </a>
                     </div>
 
@@ -807,7 +813,7 @@
                             <span class="text-xs font-mono text-red-400 uppercase tracking-wider block">VIDEO CHANNEL</span>
                             <h3 class="text-2xl font-bold text-white tracking-tight">官方 YouTube 頻道</h3>
                             <p class="text-sm text-neutral-400 leading-relaxed">
-                                觀賞最新的產品概念影片、技術發表會與深度幕後花絮，用視覺見證未來的降臨[span_28](start_span)[span_28](end_span)。
+                                觀賞最新的產品概念影片、技術發表會與深度幕後花絮，用視覺見證未來的降臨。
                             </p>
                         </div>
                         <a href="https://youtube.com/@frx2027?si=UxOXmSIm-6ReU-o_" target="_blank" class="inline-flex justify-center items-center py-3.5 px-6 bg-white hover:bg-neutral-200 text-black font-extrabold rounded-full transition text-sm">
@@ -820,7 +826,7 @@
                     <div class="space-y-1 text-center sm:text-left">
                         <span class="text-xs font-mono text-neutral-500 uppercase tracking-wider block">INTERNAL ACCESS</span>
                         <h4 class="text-lg font-bold text-white">FRX 內部員工專用群組</h4>
-                        <p class="text-xs text-neutral-400">僅限內部核心成員與協作者登入協同作業[span_29](start_span)[span_29](end_span)。</p>
+                        <p class="text-xs text-neutral-400">僅限內部成員與協作者登入協同作業。</p>
                     </div>
                     <a href="https://discord.gg/deRyAaHAXb" target="_blank" class="py-3 px-6 bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white font-bold rounded-full transition text-xs font-mono">
                         FRX 工程師群組登入
@@ -839,44 +845,43 @@
     <footer class="bg-black border-t border-white/10 text-neutral-500 text-xs py-16 px-4 sm:px-8">
         <div class="max-w-7xl mx-auto space-y-12">
             <div class="border-b border-white/10 pb-8 text-neutral-400 space-y-2 leading-relaxed">
-                <p>1. 本網站由 FRX 官方網站管理部門管理與更新[span_30](start_span)[span_30](end_span)。</p>
-                <p>2. FRX Corporation 保留隨時更改本網站所有內容之權利[span_31](start_span)[span_31](end_span)。</p>
+                <p>1. 本網站由 FRX 官方網站管理部門管理更新。</p>
+                <p>2. FRX Corporation 保留更改本網站所有內容之權利。</p>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
                 <div>
                     <h4 class="font-bold text-white mb-3">核心產品</h4>
                     <ul class="space-y-2">
-                        <li><a href="javascript:void(0)" onclick="switchPage('visionpro')" class="hover:text-white transition">FRX最新動態</a></li>
-                        <li><a href="javascript:void(0)" onclick="switchPage('os')" class="hover:text-white transition">Discord</a></li>
-                        <li><a href="javascript:void(0)" onclick="switchPage('silicon')" class="hover:text-white transition">發展歷程</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('visionpro', true)" class="hover:text-white transition">FRX 最新動態</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('os', true)" class="hover:text-white transition">Discord</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('silicon', true)" class="hover:text-white transition">歷程</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-white mb-3">開發與介紹</h4>
+                    <h4 class="font-bold text-white mb-3">開發</h4>
                     <ul class="space-y-2">
-                        <li><a href="javascript:void(0)" onclick="switchPage('developers')" class="hover:text-white transition">概念介紹</a></li>
-                        <li><a href="javascript:void(0)" onclick="switchPage('matrix')" class="hover:text-white transition">核心技術</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('developers', true)" class="hover:text-white transition">概念介紹</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-white mb-3">支援與服務</h4>
+                    <h4 class="font-bold text-white mb-3">常見問題</h4>
                     <ul class="space-y-2">
-                        <li><a href="javascript:void(0)" onclick="switchPage('esg')" class="hover:text-white transition">常見問題</a></li>
-                        <li><a href="javascript:void(0)" onclick="switchPage('contact')" class="hover:text-white transition">社群平台</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('esg', true)" class="hover:text-white transition">常見問題</a></li>
                     </ul>
                 </div>
                 <div></div>
                 <div>
                     <h4 class="font-bold text-white mb-3">概念項目</h4>
                     <ul class="space-y-2">
-                        <li><a href="javascript:void(0)" onclick="switchPage('stores')" class="hover:text-white transition">FR 100 點擊戰</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('stores', true)" class="hover:text-white transition">FR 100</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('contact', true)" class="hover:text-white transition">說明</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-neutral-600 gap-4">
-                <div>Copyright © 2027 FRX Corporation. 保留一切權利[span_32](start_span)[span_32](end_span)。</div>
+                <div>Copyright © 2027 FRX Corporation. 保留一切權利。</div>
                 <div class="flex space-x-6">
                     <a href="#" class="hover:text-neutral-400 transition">隱私權政策</a>
                     <a href="#" class="hover:text-neutral-400 transition">使用條款</a>
@@ -887,7 +892,7 @@
     </footer>
 
     <div id="search-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl hidden items-start justify-center pt-28 px-4">
-        <div class="glass-card w-full max-w-2xl rounded-3xl p-6 border border-white/20 relative">
+        <div class="glass-card w-full max-w-2xl rounded-3xl p-6 border border-white/20 relative animate-menu-pop">
             <button onclick="toggleSearchModal()" class="absolute top-6 right-6 text-neutral-400 hover:text-white">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
@@ -896,57 +901,18 @@
                 <input type="text" placeholder="搜尋官方網站內容....." class="bg-transparent border-none text-white focus:outline-none w-full text-base">
             </div>
             <div class="mt-6 space-y-3">
-                <div class="text-xs font-mono text-neutral-500">熱門搜尋關鍵字</div>
+                <div class="text-xs font-mono text-neutral-500">熱門搜尋</div>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="switchPage('visionpro'); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">FRX 最新動態</button>
-                    <button onclick="switchPage('matrix'); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">核心技術</button>
-                    <button onclick="switchPage('os'); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">Discord</button>
+                    <button onclick="switchPage('visionpro', true); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">FRX 最新動態</button>
+                    <button onclick="switchPage('developers', true); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">核心架構</button>
+                    <button onclick="switchPage('contact', true); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">社群平台</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden items-center justify-center p-4">
-        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-neutral-400 hover:text-white z-50">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
-        <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center">
-            <img id="lightbox-img" src="" alt="Lightbox Image" class="max-w-full max-h-[80vh] object-contain rounded-2xl border border-white/10 shadow-2xl">
-            <p id="lightbox-caption" class="text-neutral-300 text-sm mt-4 font-mono text-center"></p>
-        </div>
-    </div>
-
     <script>
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('keydown', function (e) {
-            if (e.keyCode === 123) { e.preventDefault(); return false; }
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) { e.preventDefault(); return false; }
-            if (e.metaKey && e.altKey && e.keyCode === 73) { e.preventDefault(); return false; }
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 74) { e.preventDefault(); return false; }
-            if (e.metaKey && e.altKey && e.keyCode === 74) { e.preventDefault(); return false; }
-            if (e.ctrlKey && e.keyCode === 85) { e.preventDefault(); return false; }
-            if (e.metaKey && e.altKey && e.keyCode === 85) { e.preventDefault(); return false; }
-            if (e.ctrlKey && e.keyCode === 83) { e.preventDefault(); return false; }
-            if (e.metaKey && e.keyCode === 83) { e.preventDefault(); return false; }
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 67) { e.preventDefault(); return false; }
-        });
-
-        setInterval(function () {
-            const startTime = performance.now();
-            debugger;
-            const endTime = performance.now();
-            if (endTime - startTime > 100) {
-                document.body.innerHTML = "<div style='color:white;text-align:center;padding-top:20%;font-family:sans-serif;'><h1>系統提示：檢測到非法開發者除錯模式</h1></div>";
-            }
-        }, 1000);
-    </script>
-
-    <script>
-        lucide.createIcons();
-
+        // 滑鼠游標追蹤光暈
         const glow = document.getElementById('cursor-glow');
         window.addEventListener('mousemove', (e) => {
             if (glow) {
@@ -955,39 +921,50 @@
             }
         });
 
-        function switchPage(pageId) {
+        // 核心頁面切換與網址同步 (支援直接傳送連結)
+        function switchPage(pageId, updateHistory = false) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             
             const target = document.getElementById('page-' + pageId);
-            if (target) target.classList.add('active');
+            if (target) {
+                target.classList.add('active');
+            } else {
+                document.getElementById('page-home').classList.add('active');
+                pageId = 'home';
+            }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            if (pageId === 'silicon') setTimeout(initSiliconCanvases, 100);
+            if (updateHistory) {
+                const newUrl = pageId === 'home' ? window.location.pathname : `#${pageId}`;
+                history.pushState({ page: pageId }, '', newUrl);
+            }
         }
 
-        function openLightbox(src, caption) {
-            const modal = document.getElementById('lightbox-modal');
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox-caption').innerText = caption || 'FRX High-Res Visual';
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
+        // 監聽瀏覽器上一頁/下一頁或直接輸入帶有 #hash 的網址
+        window.addEventListener('popstate', (e) => {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            switchPage(hash, false);
+        });
 
-        function closeLightbox() {
-            const modal = document.getElementById('lightbox-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
+        // 網頁初始載入時自動判斷 hash
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                switchPage(hash, false);
+            }
+        });
 
         function toggleSearchModal() {
-            document.getElementById('search-modal').classList.toggle('hidden');
-            document.getElementById('search-modal').classList.toggle('flex');
+            const modal = document.getElementById('search-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
         }
 
         function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-            document.getElementById('mobile-menu').classList.toggle('flex');
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
         }
 
         function initHomeCanvas() {
@@ -1031,28 +1008,10 @@
             loop();
         }
 
-        window.addEventListener('scroll', () => {
-            const container = document.getElementById('apple-zoom-container');
-            const img = document.getElementById('apple-zoom-img');
-            if (!container || !img) return;
-
-            const rect = container.getBoundingClientRect();
-            const totalHeight = container.offsetHeight - window.innerHeight;
-            
-            if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
-                const progress = Math.min(Math.max(-rect.top / totalHeight, 0), 1);
-                const scale = 1 + progress * 0.5;
-                img.style.transform = `scale(${scale})`;
-            }
-        });
-
         window.onload = function() {
             initHomeCanvas();
+            lucide.createIcons();
         };
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        });
     </script>
 </body>
 </html>
