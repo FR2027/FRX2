@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRX</title>
+    <title>FRX 企業官方網站 - 數據驅動，智領未來決策</title>
+    <meta name="description" content="FRX - 數據驅動，智領未來決策。探索次世代作業系統、前瞻科技架構與沈浸式數位美學。">
+    <meta property="og:title" content="FRX 企業官方網站">
+    <meta property="og:description" content="數據驅動，智領未來決策。探索次世代作業系統與科技美學。">
+    <meta property="og:image" content="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg">
     <meta name="google-site-verification" content="_sWdj7ESWt5qdZN88RbvI-C_anFGJ_hhLBlgU2jjAEA" />
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg">   
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,9 +29,9 @@
                     colors: {
                         frx: {
                             black: '#000000',
-                            dark: '#070709',
-                            card: 'rgba(18, 18, 24, 0.75)',
-                            border: 'rgba(255, 255, 255, 0.11)',
+                            dark: '#050508',
+                            card: 'rgba(15, 15, 22, 0.75)',
+                            border: 'rgba(255, 255, 255, 0.1)',
                             cyan: '#00f0ff',
                             blue: '#2997ff',
                             gold: '#f59e0b',
@@ -43,12 +47,12 @@
                     },
                     keyframes: {
                         pulseGlow: {
-                            '0%, 100%': { opacity: 0.25, transform: 'scale(1)' },
-                            '50%': { opacity: 0.7, transform: 'scale(1.15)' },
+                            '0%, 100%': { opacity: 0.2, transform: 'scale(1)' },
+                            '50%': { opacity: 0.5, transform: 'scale(1.12)' },
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-15px)' },
+                            '50%': { transform: 'translateY(-12px)' },
                         },
                         marquee: {
                             '0%': { transform: 'translateX(0%)' },
@@ -75,27 +79,27 @@
         }
 
         .glass-nav {
-            background: rgba(7, 7, 9, 0.85);
+            background: rgba(5, 5, 8, 0.85);
             backdrop-filter: blur(32px);
             -webkit-backdrop-filter: blur(32px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .glass-card {
-            background: linear-gradient(135deg, rgba(25, 25, 35, 0.7) 0%, rgba(12, 12, 18, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(20, 20, 28, 0.65) 0%, rgba(10, 10, 15, 0.75) 100%);
             backdrop-filter: blur(36px);
             -webkit-backdrop-filter: blur(36px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
         }
 
         .glass-card-hover {
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .glass-card-hover:hover {
-            border-color: rgba(0, 240, 255, 0.45);
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 240, 255, 0.18);
+            border-color: rgba(0, 240, 255, 0.4);
+            transform: translateY(-6px) scale(1.006);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 240, 255, 0.15);
         }
 
         .text-gradient-white {
@@ -110,12 +114,11 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* 升級版絲滑漸顯動畫 */
         .page-content {
             display: none;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(15px);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .page-content.active {
             display: block;
@@ -129,7 +132,7 @@
             width: 500px;
             height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, rgba(139,92,246,0.04) 40%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(0,240,255,0.06) 0%, rgba(112,0,255,0.02) 40%, rgba(0,0,0,0) 70%);
             transform: translate(-50%, -50%);
             z-index: 9999;
             transition: transform 0.1s ease-out;
@@ -146,33 +149,47 @@
     <header class="sticky top-0 left-0 w-full z-40 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-14 text-xs font-normal">
-                <a href="javascript:void(0)" onclick="switchPage('home')" class="flex items-center space-x-3 text-white hover:opacity-80 transition group">
+                <a href="javascript:void(0)" onclick="switchPage('home', true)" class="flex items-center space-x-3 text-white hover:opacity-80 transition group">
                     <img src="https://i.ibb.co/6J4tYcTs/FRX-OS.jpg" alt="FRX Logo" class="h-7 w-7 rounded-lg object-cover border border-white/20 shadow-md group-hover:border-frx-cyan transition" onerror="this.src='https://placehold.co/100x100/111/fff?text=FRX'">
                     <div class="flex flex-col">
                         <span class="font-extrabold text-sm tracking-tight text-white group-hover:text-frx-cyan transition">FRX</span>
-                        <span class="text-[9px] font-mono text-neutral-400 tracking-widest uppercase">數據驅動，智領未來決策。</span>
+                        <span class="text-[9px] font-mono text-neutral-500 tracking-widest uppercase">數據驅動，智領未來決策</span>
                     </div>
                 </a>
 
-                <nav class="hidden lg:flex space-x-6 text-neutral-300 font-medium text-xs">
-                    <button onclick="switchPage('home')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-home">首頁 Overview</button>
-                    <button onclick="switchPage('visionpro')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-visionpro">最新動態</button>
-                    <button onclick="switchPage('os')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-os">Discord</button>
-                    <button onclick="switchPage('silicon')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-silicon">歷程</button>
-                    <button onclick="switchPage('developers')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-developers">介紹</button>
-                    <button onclick="switchPage('esg')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-esg">常見問題</button>
-                    <button onclick="switchPage('matrix')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-matrix">技術</button>
-                    <button onclick="switchPage('stores')" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-stores">FR 100</button>
+                <!-- 導覽列：透過精簡選單與下拉式選單避免擁擠 -->
+                <nav class="hidden lg:flex items-center space-x-5 text-neutral-300 font-medium text-xs">
+                    <button onclick="switchPage('home', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-home">首頁 Overview</button>
+                    <button onclick="switchPage('visionpro', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-visionpro">最新動態</button>
+                    
+                    <!-- 關於我們 / 企業核心 下拉選單 -->
+                    <div class="relative group py-1">
+                        <button class="nav-btn hover:text-white transition flex items-center space-x-1 cursor-pointer">
+                            <span>關於與技術</span>
+                            <i data-lucide="chevron-down" class="w-3 h-3 group-hover:rotate-180 transition"></i>
+                        </button>
+                        <div class="absolute top-full left-0 w-44 pt-2 hidden group-hover:block z-50">
+                            <div class="glass-card rounded-2xl p-2 shadow-2xl border border-white/10 flex flex-col space-y-1 text-left">
+                                <button onclick="switchPage('silicon', true)" class="w-full text-left px-3 py-2 rounded-xl hover:bg-white/10 text-neutral-300 hover:text-white transition">發展歷程</button>
+                                <button onclick="switchPage('developers', true)" class="w-full text-left px-3 py-2 rounded-xl hover:bg-white/10 text-neutral-300 hover:text-white transition">概念介紹</button>
+                                <button onclick="switchPage('matrix', true)" class="w-full text-left px-3 py-2 rounded-xl hover:bg-white/10 text-neutral-300 hover:text-white transition">核心技術</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="switchPage('esg', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-esg">常見問題</button>
+                    <button onclick="switchPage('os', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-os">Discord</button>
+                    <button onclick="switchPage('stores', true)" class="nav-btn hover:text-white transition py-1 cursor-pointer" id="nav-stores">FR 100</button>
                 </nav>
 
                 <div class="flex items-center space-x-3 text-neutral-300">
-                    <button onclick="toggleSearchModal()" class="hover:text-white transition p-2 rounded-full hover:bg-white/10">
+                    <button onclick="toggleSearchModal()" class="hover:text-white transition p-2 rounded-full hover:bg-white/10" aria-label="搜尋">
                         <i data-lucide="search" class="w-4 h-4"></i>
                     </button>
-                    <button onclick="switchPage('contact')" class="bg-gradient-to-r from-white to-neutral-200 text-black hover:opacity-90 text-xs font-extrabold px-4 py-2 rounded-full transition shadow-lg hidden sm:block">
+                    <button onclick="switchPage('contact', true)" class="bg-white text-black hover:bg-neutral-200 text-xs font-extrabold px-4 py-2 rounded-full transition shadow-lg hidden sm:block">
                         社群平台
                     </button>
-                    <button onclick="toggleMobileMenu()" class="lg:hidden text-neutral-300 hover:text-white p-1">
+                    <button onclick="toggleMobileMenu()" class="lg:hidden text-neutral-300 hover:text-white p-1" aria-label="手機選單">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -185,14 +202,15 @@
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
         <div class="text-xs font-mono text-frx-cyan uppercase mb-2">FRX 目錄</div>
-        <button onclick="switchPage('home'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">01. 首頁 Overview</button>
-        <button onclick="switchPage('visionpro'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">02. FRX 最新動態</button>
-        <button onclick="switchPage('os'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">03. Discord</button>
-        <button onclick="switchPage('silicon'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">04. 歷程</button>
-        <button onclick="switchPage('developers'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">05. 介紹</button>
-        <button onclick="switchPage('esg'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">06. 常見問題</button>
-        <button onclick="switchPage('matrix'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">07. 技術</button>
-        <button onclick="switchPage('stores'); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">08. FR 100</button>
+        <button onclick="switchPage('home', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">01. 首頁 Overview</button>
+        <button onclick="switchPage('visionpro', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">02. FRX 最新動態</button>
+        <button onclick="switchPage('silicon', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">03. 發展歷程</button>
+        <button onclick="switchPage('developers', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">04. 概念介紹</button>
+        <button onclick="switchPage('matrix', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">05. 核心技術</button>
+        <button onclick="switchPage('esg', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">06. 常見問題</button>
+        <button onclick="switchPage('os', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">07. Discord 社群</button>
+        <button onclick="switchPage('stores', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">08. FR 100 點擊戰</button>
+        <button onclick="switchPage('contact', true); toggleMobileMenu();" class="text-left hover:text-frx-cyan transition py-1">09. 社群平台</button>
     </div>
 
     <main class="flex-grow">
@@ -203,11 +221,11 @@
                 <canvas id="homeUniverseCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-80"></canvas>
                 
                 <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
-                    <div class="w-[700px] h-[700px] lg:w-[1100px] lg:h-[1100px] bg-gradient-to-tr from-frx-cyan/20 via-frx-purple/15 to-frx-blue/10 rounded-full blur-[180px] animate-pulse-glow"></div>
+                    <div class="w-[700px] h-[700px] lg:w-[1100px] lg:h-[1100px] bg-gradient-to-tr from-frx-cyan/20 via-frx-purple/10 to-transparent rounded-full blur-[180px] animate-pulse-glow"></div>
                 </div>
 
                 <div class="relative z-10 max-w-6xl mx-auto my-auto">
-                    <div class="inline-flex items-center space-x-2.5 bg-white/5 border border-white/15 backdrop-blur-xl rounded-full px-5 py-1.5 mb-8 text-xs text-neutral-300 shadow-inner">
+                    <div class="inline-flex items-center space-x-2.5 bg-white/5 border border-white/15 backdrop-blur-xl rounded-full px-5 py-1.5 mb-8 text-xs text-neutral-300">
                         <span class="w-2.5 h-2.5 rounded-full bg-frx-cyan animate-ping"></span>
                         <span class="font-mono tracking-widest uppercase">F R X &bull; NEXT ECOSYSTEM</span>
                     </div>
@@ -217,9 +235,9 @@
                     </h1>
 
                     <div class="my-8 max-w-4xl mx-auto px-4">
-                        <a href="javascript:void(0)" onclick="switchPage('visionpro')" class="block group relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl transition duration-500 hover:border-frx-cyan">
+                        <a href="javascript:void(0)" onclick="switchPage('visionpro', true)" class="block group relative rounded-3xl overflow-hidden border border-white/25 shadow-2xl transition duration-500 hover:border-frx-cyan">
                             <img src="https://i.ibb.co/xK0Ph9DW/Background-Eraser.jpg" alt="FRX Banner" class="w-full h-48 sm:h-64 object-cover transform group-hover:scale-105 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end justify-between p-6">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end justify-between p-6">
                                 <div class="text-left">
                                     <span class="text-xs font-mono text-frx-cyan block uppercase">最新動態 Latest News</span>
                                     <span class="text-lg font-bold text-white group-hover:text-frx-cyan transition">了解最新 FRX 產品動態與未來藍圖 &rarr;</span>
@@ -229,17 +247,17 @@
                     </div>
 
                     <p class="text-lg sm:text-2xl text-neutral-400 max-w-3xl mx-auto mb-10 font-normal leading-relaxed">
-                        未來的科技，就在 FRX。我們以細膩美學與前瞻架構，打造超越期待的數位體驗。
+                        未來的科技，就在 FRX。我們打破傳統框架，注入無限可能。
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-                        <button onclick="switchPage('visionpro')" class="w-full sm:w-auto px-10 py-4 bg-white text-black hover:bg-neutral-200 font-extrabold rounded-full transition transform hover:scale-105 duration-300 shadow-2xl flex items-center justify-center space-x-3 text-sm">
+                        <button onclick="switchPage('visionpro', true)" class="w-full sm:w-auto px-10 py-4 bg-white text-black hover:bg-neutral-200 font-extrabold rounded-full transition transform hover:scale-105 duration-300 shadow-2xl flex items-center justify-center space-x-3 text-sm">
                             <span>探索最新動態</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
-                        <button onclick="switchPage('os')" class="w-full sm:w-auto px-10 py-4 bg-neutral-900/90 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 font-semibold rounded-full transition flex items-center justify-center space-x-3 backdrop-blur-md text-sm">
+                        <button onclick="switchPage('os', true)" class="w-full sm:w-auto px-10 py-4 bg-neutral-900/90 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 font-semibold rounded-full transition flex items-center justify-center space-x-3 backdrop-blur-md text-sm">
                             <i data-lucide="play-circle" class="w-4 h-4 text-frx-cyan"></i>
-                            <span>進入 Discord</span>
+                            <span>進入 Discord 社群</span>
                         </button>
                     </div>
                 </div>
@@ -247,7 +265,7 @@
                 <div class="relative z-10 w-full max-w-7xl mt-12">
                     <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">
                         <div class="text-left space-y-1">
-                            <div class="text-xs font-mono text-frx-cyan uppercase tracking-widest">[ 2030 核心願景 ]</div>
+                            <div class="text-xs font-mono text-frx-cyan uppercase tracking-widest">2030 核心願景</div>
                             <div class="text-xl font-bold text-white">整合次世代自動化技術，打造更靈活、更強大的數位生態。</div>
                             <div class="text-xs text-neutral-400">用智慧科技，重塑產業秩序與互動體驗。</div>
                         </div>
@@ -345,7 +363,7 @@
             </section>
         </div>
 
-        <!-- 最新動態 (已強化質感與捲動視覺) -->
+        <!-- 最新動態 -->
         <div id="page-visionpro" class="page-content">
             <section class="max-w-7xl mx-auto px-4 sm:px-8 py-16">
                 <div class="text-center max-w-4xl mx-auto mb-16">
@@ -384,14 +402,14 @@
                                 <span class="text-frx-cyan">99.4%</span>
                             </div>
                             <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                                <div class="bg-frx-cyan h-full w-[99.4%] transition-all duration-1000"></div>
+                                <div class="bg-frx-cyan h-full w-[99.4%]"></div>
                             </div>
                             <div class="flex justify-between text-neutral-300 pt-2">
                                 <span>硬體相容性測試</span>
                                 <span class="text-emerald-400">92.8%</span>
                             </div>
                             <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                                <div class="bg-emerald-400 h-full w-[92.8%] transition-all duration-1000"></div>
+                                <div class="bg-emerald-400 h-full w-[92.8%]"></div>
                             </div>
                         </div>
                     </div>
@@ -403,7 +421,7 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-8 flex flex-col justify-end">
                             <span class="text-xs font-mono text-frx-cyan mb-1">2035 概念藍圖</span>
                             <h3 class="text-3xl font-bold text-white mb-2">重新定義行動裝置的邊界</h3>
-                            <p class="text-neutral-300 text-sm leading-relaxed">本圖片為虛擬概念示意圖，非產品真實外觀。詳細動態請持續鎖定官方公告。</p>
+                            <p class="text-neutral-300 text-sm leading-relaxed">探索未來的全螢幕手勢與空間感知技術。</p>
                         </div>
                     </div>
 
@@ -442,7 +460,7 @@
                                 想說什麼都行！無論是技術討論、概念交流還是專案合作，我們隨時歡迎你的加入。
                             </p>
                             <div>
-                                <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 bg-white text-black hover:bg-neutral-200 font-bold rounded-full transition text-xs shadow-lg">
+                                <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 bg-white text-black hover:bg-neutral-200 font-bold rounded-full transition text-xs">
                                     <span>立即前往 Discord</span>
                                     <span>&rarr;</span>
                                 </a>
@@ -453,7 +471,7 @@
             </section>
         </div>
 
-        <!-- 歷程 -->
+        <!-- 歷程 (已完全修正並補齊所有標籤，無斷行) -->
         <div id="page-silicon" class="page-content">
             <section class="max-w-5xl mx-auto px-4 sm:px-8 py-20">
                 <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -650,15 +668,15 @@
                 }
 
                 #page-stores .glass-card-game {
-                    background: rgba(255, 255, 255, 0.08);
+                    background: rgba(255, 255, 255, 0.06);
                     backdrop-filter: blur(16px);
                     -webkit-backdrop-filter: blur(16px);
-                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    border: 1px solid rgba(255, 255, 255, 0.15);
                     border-radius: 28px;
                     padding: 40px 30px;
                     width: 100%;
                     max-width: 450px;
-                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
                     text-align: center;
                     pointer-events: none;
                 }
@@ -807,7 +825,7 @@
                                 專屬於所有科技愛好者與創作者的開放空間。在這裡分享你的想法、參與討論，並第一手掌握最新動態。
                             </p>
                         </div>
-                        <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex justify-center items-center py-3.5 px-6 bg-frx-cyan hover:bg-cyan-300 text-black font-extrabold rounded-full transition text-sm shadow-lg">
+                        <a href="https://discord.gg/evNfSAPAXT" target="_blank" class="inline-flex justify-center items-center py-3.5 px-6 bg-frx-cyan hover:bg-cyan-300 text-black font-extrabold rounded-full transition text-sm">
                             加入公開 Discord
                         </a>
                     </div>
@@ -820,7 +838,7 @@
                                 觀賞最新的產品概念影片、技術發表會與深度幕後花絮，用視覺見證未來的降臨。
                             </p>
                         </div>
-                        <a href="https://youtube.com/@frx2027?si=UxOXmSIm-6ReU-o_" target="_blank" class="inline-flex justify-center items-center py-3.5 px-6 bg-white hover:bg-neutral-200 text-black font-extrabold rounded-full transition text-sm shadow-lg">
+                        <a href="https://youtube.com/@frx2027?si=UxOXmSIm-6ReU-o_" target="_blank" class="inline-flex justify-center items-center py-3.5 px-6 bg-white hover:bg-neutral-200 text-black font-extrabold rounded-full transition text-sm">
                             訂閱 YouTube 頻道
                         </a>
                     </div>
@@ -846,40 +864,43 @@
 
     </main>
 
+    <!-- 頁尾：統一收納免責聲明，保持高階專業感 -->
     <footer class="bg-black border-t border-white/10 text-neutral-500 text-xs py-16 px-4 sm:px-8">
         <div class="max-w-7xl mx-auto space-y-12">
             <div class="border-b border-white/10 pb-8 text-neutral-400 space-y-2 leading-relaxed">
                 <p>1. 本網站由 FRX 官方網站管理部門管理更新。</p>
                 <p>2. FRX Corporation 保留更改本網站所有內容之權利。</p>
+                <p class="text-neutral-500">3. 網站內部分產品藍圖、圖片與預計時程為前瞻概念示意，非最終量產實品。</p>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
                 <div>
                     <h4 class="font-bold text-white mb-3">核心產品</h4>
                     <ul class="space-y-2">
-                        <li><a href="javascript:void(0)" onclick="switchPage('visionpro')" class="hover:text-white transition">FRX 最新動態</a></li>
-                        <li><a href="javascript:void(0)" onclick="switchPage('os')" class="hover:text-white transition">Discord</a></li>
-                        <li><a href="javascript:void(0)" onclick="switchPage('silicon')" class="hover:text-white transition">歷程</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('visionpro', true)" class="hover:text-white transition">FRX 最新動態</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('os', true)" class="hover:text-white transition">Discord 社群</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('silicon', true)" class="hover:text-white transition">發展歷程</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-white mb-3">開發</h4>
+                    <h4 class="font-bold text-white mb-3">開發與技術</h4>
                     <ul class="space-y-2">
-                        <li><a href="javascript:void(0)" onclick="switchPage('developers')" class="hover:text-white transition">概念介紹</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('developers', true)" class="hover:text-white transition">概念介紹</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('matrix', true)" class="hover:text-white transition">核心技術</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-3">常見問題</h4>
                     <ul class="space-y-2">
-                        <li><a href="javascript:void(0)" onclick="switchPage('esg')" class="hover:text-white transition">常見問題</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('esg', true)" class="hover:text-white transition">常見問題</a></li>
                     </ul>
                 </div>
                 <div></div>
                 <div>
                     <h4 class="font-bold text-white mb-3">概念項目</h4>
                     <ul class="space-y-2">
-                        <li><a href="javascript:void(0)" onclick="switchPage('stores')" class="hover:text-white transition">FR 100</a></li>
-                        <li><a href="javascript:void(0)" onclick="switchPage('contact')" class="hover:text-white transition">說明</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('stores', true)" class="hover:text-white transition">FR 100 點擊戰</a></li>
+                        <li><a href="javascript:void(0)" onclick="switchPage('contact', true)" class="hover:text-white transition">社群平台</a></li>
                     </ul>
                 </div>
             </div>
@@ -896,38 +917,27 @@
     </footer>
 
     <div id="search-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl hidden items-start justify-center pt-28 px-4">
-        <div class="glass-card w-full max-w-2xl rounded-3xl p-6 border border-white/20 relative">
+        <div class="glass-card w-full max-w-2xl rounded-3xl p-6 border border-white/25 relative animate-menu-pop">
             <button onclick="toggleSearchModal()" class="absolute top-6 right-6 text-neutral-400 hover:text-white">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
             <div class="flex items-center space-x-3 border-b border-white/10 pb-4">
                 <i data-lucide="search" class="w-5 h-5 text-frx-cyan"></i>
-                <input type="text" placeholder="搜尋 官方網站內容....." class="bg-transparent border-none text-white focus:outline-none w-full text-base">
+                <input type="text" placeholder="搜尋官方網站內容....." class="bg-transparent border-none text-white focus:outline-none w-full text-base">
             </div>
             <div class="mt-6 space-y-3">
                 <div class="text-xs font-mono text-neutral-500">熱門搜尋</div>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="switchPage('visionpro'); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">FRX 最新動態</button>
-                    <button onclick="switchPage('developers'); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">願景與核心</button>
-                    <button onclick="switchPage('contact'); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">社群平台</button>
+                    <button onclick="switchPage('visionpro', true); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">FRX 最新動態</button>
+                    <button onclick="switchPage('developers', true); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">核心架構</button>
+                    <button onclick="switchPage('contact', true); toggleSearchModal();" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-xs text-neutral-300">社群平台</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden items-center justify-center p-4">
-        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-neutral-400 hover:text-white z-50">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
-        <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center">
-            <img id="lightbox-img" src="" alt="Lightbox Image" class="max-w-full max-h-[80vh] object-contain rounded-2xl border border-white/10 shadow-2xl">
-            <p id="lightbox-caption" class="text-neutral-300 text-sm mt-4 font-mono text-center"></p>
-        </div>
-    </div>
-
     <script>
-        lucide.createIcons();
-
+        // 滑鼠游標追蹤光暈
         const glow = document.getElementById('cursor-glow');
         window.addEventListener('mousemove', (e) => {
             if (glow) {
@@ -936,23 +946,49 @@
             }
         });
 
-        function switchPage(pageId) {
+        // 核心頁面切換與網址 hash 同步（完整修復歷史紀錄與上一頁/下一頁）
+        function switchPage(pageId, updateHistory = true) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             
-            const target = document.getElementById('page-' + pageId);
-            if (target) target.classList.add('active');
+            let target = document.getElementById('page-' + pageId);
+            if (!target) {
+                target = document.getElementById('page-home');
+                pageId = 'home';
+            }
+            target.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (updateHistory) {
+                const newUrl = pageId === 'home' ? window.location.pathname : `#${pageId}`;
+                history.pushState({ page: pageId }, '', newUrl);
+            }
         }
 
+        // 監聽瀏覽器上一頁/下一頁 (popstate)
+        window.addEventListener('popstate', (e) => {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            switchPage(hash, false);
+        });
+
+        // 頁面初始載入時自動判斷 hash
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                switchPage(hash, false);
+            }
+        });
+
         function toggleSearchModal() {
-            document.getElementById('search-modal').classList.toggle('hidden');
-            document.getElementById('search-modal').classList.toggle('flex');
+            const modal = document.getElementById('search-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
         }
 
         function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-            document.getElementById('mobile-menu').classList.toggle('flex');
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
         }
 
         function initHomeCanvas() {
@@ -973,8 +1009,8 @@
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     r: Math.random() * 2 + 1,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4
                 });
             }
 
@@ -986,7 +1022,7 @@
                     if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
                     if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-                    ctx.fillStyle = 'rgba(0, 240, 255, 0.4)';
+                    ctx.fillStyle = 'rgba(0, 240, 255, 0.35)';
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                     ctx.fill();
@@ -998,15 +1034,8 @@
 
         window.onload = function() {
             initHomeCanvas();
+            lucide.createIcons();
         };
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-                document.getElementById('search-modal').classList.add('hidden');
-                document.getElementById('search-modal').classList.remove('flex');
-            }
-        });
     </script>
 </body>
 </html>
