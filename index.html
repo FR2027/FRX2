@@ -208,55 +208,58 @@
     <main class="flex-grow">
 
         <div id="page-home" class="page-content active">
-            <section class="relative min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center text-center px-4 py-16 overflow-hidden border-b border-white/10">
+            <!-- 重新設計的首頁 Hero 區塊：優化排版層次與動態視覺 -->
+            <section class="relative min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center text-center px-4 py-20 overflow-hidden border-b border-white/10">
                 <canvas id="homeUniverseCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-80"></canvas>
                 
                 <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
-                    <div class="w-[700px] h-[700px] lg:w-[1100px] lg:h-[1100px] bg-gradient-to-tr from-frx-cyan/25 via-frx-purple/15 to-transparent rounded-full blur-[180px] animate-pulse-glow"></div>
+                    <div class="w-[700px] h-[700px] lg:w-[1200px] lg:h-[1200px] bg-gradient-to-tr from-frx-cyan/20 via-frx-purple/10 to-transparent rounded-full blur-[180px] animate-pulse-glow"></div>
                 </div>
 
-                <div class="relative z-10 max-w-6xl mx-auto my-auto">
-                    <div class="inline-flex items-center space-x-2.5 bg-white/5 border border-white/15 backdrop-blur-xl rounded-full px-5 py-1.5 mb-8 text-xs text-neutral-300">
+                <div class="relative z-10 max-w-5xl mx-auto my-auto flex flex-col items-center">
+                    <div class="inline-flex items-center space-x-2.5 bg-white/5 border border-white/15 backdrop-blur-xl rounded-full px-5 py-2 mb-6 text-xs text-neutral-300 shadow-lg animate-float">
                         <span class="w-2.5 h-2.5 rounded-full bg-frx-cyan animate-ping"></span>
-                        <span class="font-mono tracking-widest uppercase">F R X</span>
+                        <span class="font-mono tracking-widest uppercase">F R X — NEXT GENERATION</span>
                     </div>
 
-                    <h1 class="text-6xl sm:text-8xl lg:text-[110px] font-black tracking-tight text-gradient-white mb-8 leading-none">
+                    <h1 class="text-5xl sm:text-7xl lg:text-[100px] font-black tracking-tight text-gradient-white mb-6 leading-[1.1]">
                         極致工藝，<br>重新定義想像。
                     </h1>
 
-                    <div class="my-8 max-w-4xl mx-auto px-4">
-                        <a href="javascript:void(0)" onclick="switchPage('visionpro')" class="block group relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl transition duration-500 hover:border-frx-cyan">
-                            <img src="https://i.ibb.co/xK0Ph9DW/Background-Eraser.jpg" alt="FRX Banner" class="w-full h-48 sm:h-64 object-cover transform group-hover:scale-105 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end justify-between p-6">
-                                <div class="text-left">
-                                    <span class="text-xs font-mono text-frx-cyan block uppercase">最新動態Latest news</span>
-                                    <span class="text-lg font-bold text-white group-hover:text-frx-cyan transition">了解最新FRX產品動態 →</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <p class="text-lg sm:text-2xl text-neutral-400 max-w-3xl mx-auto mb-10 font-normal leading-relaxed">
-                        未來的科技 就在FRX
+                    <p class="text-base sm:text-xl text-neutral-400 max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
+                        未來的科技，就在 FRX。探索次世代的作業系統與智慧硬體生態。
                     </p>
 
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-                        <button onclick="switchPage('visionpro')" class="w-full sm:w-auto px-10 py-4 bg-white text-black hover:bg-neutral-200 font-extrabold rounded-full transition transform hover:scale-105 duration-300 shadow-2xl flex items-center justify-center space-x-3 text-sm">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mb-16">
+                        <button onclick="switchPage('visionpro')" class="w-full sm:w-auto px-8 py-4 bg-white text-black hover:bg-neutral-200 font-extrabold rounded-full transition transform hover:scale-105 duration-300 shadow-xl flex items-center justify-center space-x-3 text-sm">
                             <span>最新動態</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
-                        <button onclick="switchPage('os')" class="w-full sm:w-auto px-10 py-4 bg-neutral-900/90 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 font-semibold rounded-full transition flex items-center justify-center space-x-3 backdrop-blur-md text-sm">
+                        <button onclick="switchPage('os')" class="w-full sm:w-auto px-8 py-4 bg-neutral-900/90 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 font-semibold rounded-full transition flex items-center justify-center space-x-3 backdrop-blur-md text-sm">
                             <i data-lucide="play-circle" class="w-4 h-4 text-frx-cyan"></i>
                             <span>Discord</span>
                         </button>
                     </div>
+
+                    <!-- 首頁 Banner 預告卡片重新設計 -->
+                    <div class="w-full max-w-4xl mx-auto">
+                        <a href="javascript:void(0)" onclick="switchPage('visionpro')" class="block group relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl transition duration-500 hover:border-frx-cyan bg-neutral-950/50">
+                            <div class="absolute inset-0 bg-gradient-to-r from-frx-cyan/10 to-frx-purple/10 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                            <img src="https://i.ibb.co/xK0Ph9DW/Background-Eraser.jpg" alt="FRX Banner" class="w-full h-52 sm:h-72 object-cover transform group-hover:scale-105 transition duration-700 opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-end justify-between p-6 sm:p-8">
+                                <div class="text-left space-y-1">
+                                    <span class="text-xs font-mono text-frx-cyan block uppercase tracking-wider">Latest News / 最新動態</span>
+                                    <span class="text-xl sm:text-2xl font-bold text-white group-hover:text-frx-cyan transition">了解最新 FRX 產品與系統預告 →</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="relative z-10 w-full max-w-7xl mt-12">
+                <div class="relative z-10 w-full max-w-6xl mt-20">
                     <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">
                         <div class="text-left space-y-1">
-                            <div class="text-xs font-mono text-frx-cyan uppercase tracking-widest">2030</div>
+                            <div class="text-xs font-mono text-frx-cyan uppercase tracking-widest">2030 VISION</div>
                             <div class="text-xl font-bold text-white">整合次世代自動化技術，打造更靈活、更強大的數位生態。</div>
                             <div class="text-xs text-neutral-400">用智慧科技，重塑產業秩序。</div>
                         </div>
@@ -277,7 +280,7 @@
 
             <section class="py-28 px-4 sm:px-8 max-w-7xl mx-auto">
                 <div class="mb-16">
-                    <span class="text-xs font-mono text-frx-cyan tracking-widest uppercase mb-2 block">FRX</span>
+                    <span class="text-xs font-mono text-frx-cyan tracking-widest uppercase mb-2 block">FRX INNOVATION</span>
                     <h2 class="text-4xl sm:text-7xl font-extrabold text-white">科技與美學的極致突破。</h2>
                 </div>
 
@@ -292,7 +295,7 @@
                             </p>
                         </div>
                         <div class="mt-8 relative h-64 rounded-2xl overflow-hidden border border-white/10">
-                            <img src="https://i.ibb.co/VsJs018/IMG-1122.jpg" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=2000&q=80', 'FRX Quantum Chip Micro Topology')">
+                            <img src="https://i.ibb.co/VsJs018/IMG-1122.jpg" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=2000&q=80', 'FRX Quantum Chip Micro Topology')" alt="Quantum Chip">
                         </div>
                     </div>
 
@@ -337,15 +340,15 @@
                         </p>
                         <div class="grid grid-cols-3 gap-6 border-t border-white/10 pt-6 text-center">
                             <div>
-                                <div class="text-2xl font-bold text-white font-mono">OS Beta版首次亮相</div>
+                                <div class="text-xl sm:text-2xl font-bold text-white font-mono">OS Beta版首次亮相</div>
                                 <div class="text-xs text-neutral-500">2030</div>
                             </div>
                             <div>
-                                <div class="text-2xl font-bold text-white font-mono">OS正式版上市</div>
+                                <div class="text-xl sm:text-2xl font-bold text-white font-mono">OS正式版上市</div>
                                 <div class="text-xs text-neutral-500">2030 - 2033</div>
                             </div>
                             <div>
-                                <div class="text-2xl font-bold text-white font-mono">最新行動裝置 首次亮相</div>
+                                <div class="text-xl sm:text-2xl font-bold text-white font-mono">最新行動裝置 首次亮相</div>
                                 <div class="text-xs text-neutral-500">2035</div>
                             </div>
                         </div>
